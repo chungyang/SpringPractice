@@ -2,15 +2,33 @@
 
 <beans xmlns = "http://www.springframework.org/schema/beans"
    xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
-   xsi:schemaLocation = "http://www.springframework.org/schema/beans
-   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+   xmlns:aop="http://www.springframework.org/schema/aop"
+   xsi:schemaLocation = "http://www.springframework.org/schema/aop
+   http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+   http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans.xsd">
    
-  <bean id="knight" class="DependencyInjectionDemo.BraveKnight">
+  <bean id="knight" class="di.BraveKnight">
   	<constructor-arg ref="quest" />
   </bean>
   
-   <bean id="quest" class="DependencyInjectionDemo.SlayDragonQuest">
+   <bean id="quest" class="di.SlayDragonQuest">
+  	<constructor-arg value="#{T(System).out}" />
+  </bean>
+  
+  <bean id="minstrel" class="aop.Minstrel">
   	<constructor-arg value="#{T(System).out}" />
   </bean>
    
+   
+  <aop:config>
+  	<aop:aspect ref="minstrel">
+    		<aop:pointcut id="embark"
+        		expression="execution(* *.embarkOnQuest(..))"/>
+     	<aop:before pointcut-ref="embark"
+        		method="singBeforeQuest"/>
+      	<aop:after pointcut-ref="embark"
+        		method="singAfterQuest"/>
+    </aop:aspect>
+  </aop:config>
 </beans>
