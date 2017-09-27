@@ -8,12 +8,13 @@ import org.junit.Test;
 import org.junit.contrib.java.lang.system.SystemOutRule;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import autowiring.CDPlayerConfig;
 import autowiring.CDPlayerExplicitConfig;
 import autowiring.CompactDisc;
+import autowiring.DVDPlayer;
 import autowiring.MediaPlayer;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -29,6 +30,10 @@ public class CDPlayerExplicitConfigTest {
 	@Autowired
 	private MediaPlayer mp;
 	
+	@Autowired
+	@Qualifier("dvd")
+	private DVDPlayer dp;
+	
 	@Test
 	public void cdShouldNotBeNull() {
 		assertNotNull(cd);
@@ -37,6 +42,11 @@ public class CDPlayerExplicitConfigTest {
 	@Test
 	public void mpShouldNotBeNull(){
 		assertNotNull(mp);
+	}
+	
+	@Test
+	public void dpShouldNotBeNull(){
+		assertNotNull(dp);
 	}
 	
 	@Test

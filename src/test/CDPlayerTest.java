@@ -18,7 +18,6 @@ import autowiring.MediaPlayer;
 @ContextConfiguration(classes=CDPlayerConfig.class)
 public class CDPlayerTest {
 	
-
 	@Rule
 	public final SystemOutRule systemOutRule = new SystemOutRule().enableLog();
 	
@@ -41,7 +40,7 @@ public class CDPlayerTest {
 	@Test
 	  public void play() {
 	    mp.play();
-	    assertEquals(
+		    assertEquals(
 	        "Playing Sgt. Pepper's Lonely Hearts Club Band" +
 	        " by The Beatles\n",
 	        systemOutRule.getLog());
