@@ -12,6 +12,7 @@ public class CDPlayerExplicitConfig{
 	@Bean
 	@Primary
 	public CompactDisc getSgtPepper(){
+		System.out.println("hey");
 		return new SgtPepper();
 	}
 	@Bean
