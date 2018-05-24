@@ -12,6 +12,6 @@ public interface Quest {
 		return Math.abs(questNumber()) + 1;
 	}
 	
-	//public default String default_
+//	public default String default_
 
 }
